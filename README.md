@@ -20,5 +20,4 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser. No pac
 - **Persistence:** Demo changes are stored in this browser and remain after refresh. Use **Reset demo** to restore the starting data.
 
 All data and actions are local demo examples. This site is not connected to a government, emergency-dispatch, GPS, or charging-station system. The 10-day complaint period is a displayed service target, not a guarantee.
-### 🌐 Live Demo
-**[Launch the Margh Live Interactive Dashboard](https://data-analyst-26.github.io/Margh/)**
+Add live demo link to README
