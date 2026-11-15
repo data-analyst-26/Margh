@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7f3" />
+    <meta name="description" content="A city services dashboard concept for emergency response, EV charging, and resident complaints." />
+    <title>CityPulse — City services, connected</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="CityPulse home">
+          <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3.5 28 10v12L16 28.5 4 22V10l12-6.5Z" fill="currentColor" opacity=".16"/><path d="M16 7v18M8.2 11.2l15.6 9M23.8 11.2l-15.6 9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="16" cy="16" r="3.2" fill="currentColor"/></svg></span>
+          <span class="brand-name">citypulse<span>.</span></span>
+        </a>
+        <div class="workspace-label">CITY OPERATIONS</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="nav-link active" href="#overview" data-page="overview"><span class="nav-icon">⌂</span> Overview <span class="nav-indicator"></span></a>
+          <a class="nav-link" href="#ambulances" data-page="ambulances"><span class="nav-icon">✚</span> Ambulances <span class="nav-count">08</span></a>
+          <a class="nav-link" href="#charging" data-page="charging"><span class="nav-icon">ϟ</span> EV charging</a>
+          <a class="nav-link" href="#complaints" data-page="complaints"><span class="nav-icon">▤</span> Complaints <span class="nav-count alert-count" id="nav-complaint-count">3</span></a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="help-card">
+            <div class="help-icon">?</div>
+            <div><strong>Need a hand?</strong><span>Visit the help center</span></div>
+            <span class="help-arrow">↗</span>
+          </div>
+          <div class="profile">
+            <div class="avatar">AK</div>
+            <div class="profile-info"><strong>Arun Kumar</strong><span>City administrator</span></div>
+            <button class="more-button" aria-label="More account options">···</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" id="menu-toggle" aria-label="Open navigation">☰</button>
+          <div class="breadcrumb">City services <span>/</span> <strong id="breadcrumb-current">Overview</strong></div>
+          <div class="topbar-actions">
+            <div class="live-indicator"><span></span> Demo mode · local data</div>
+            <button class="reset-button" id="reset-demo" type="button">Reset demo</button>
+            <button class="icon-button notification-button" aria-label="Notifications">♧<i></i></button>
+            <div class="today-date" id="today-date"></div>
+          </div>
+        </header>
+
+        <section class="page-section active-page" id="overview">
+          <div class="page-heading">
+            <div><div class="eyebrow"><span class="eyebrow-dot"></span> <span id="welcome-date">CITY OPERATIONS</span></div><h1>Good morning, Arun <span class="wave">✳</span></h1><p>Here’s what’s happening across your city today.</p></div>
+            <button class="button button-dark" data-go="complaints"><span>＋</span> New complaint</button>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span class="stat-label">Active ambulances</span><span class="stat-icon ambulance-icon">✚</span></div><div class="stat-value"><span id="active-ambulances">08</span> <span class="stat-unit">tracked</span></div><div class="stat-foot"><span class="status-dot green"></span> <span id="responding-ambulances">3</span> responding <span class="foot-divider">·</span> <span id="available-ambulances">5</span> available</div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-label">Charging availability</span><span class="stat-icon charge-icon">ϟ</span></div><div class="stat-value"><span id="free-chargers-total">13</span> <span class="stat-unit">spots free</span></div><div class="stat-foot"><span class="trend-up">Across 6</span> demo stations</div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-label">Open complaints</span><span class="stat-icon complaint-icon">▤</span></div><div class="stat-value" id="open-complaint-total">03 <span class="stat-unit">to resolve</span></div><div class="stat-foot"><span class="deadline-pill">1 due soon</span> within 10-day target</div></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-label">Average response</span><span class="stat-icon response-icon">◷</span></div><div class="stat-value">08<span class="stat-unit"> min</span></div><div class="stat-foot"><span class="trend-up">↓ 2 min</span> this week</div></article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel map-panel">
+              <div class="panel-heading"><div><h2>City overview</h2><p>Illustrative demo locations</p></div><button class="subtle-button" id="map-expand">Map info <span>↗</span></button></div>
+              <div class="map-area" role="img" aria-label="Illustrated city map with ambulance and EV charging locations">
+                <svg class="map-drawing" viewBox="0 0 760 390" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="760" height="390" fill="#edf1e9"/>
+                  <path class="park-shape" d="M18 28h176l34 44-16 60-72 21-45-28-81 17V28Zm503 0h239v107l-48 21-59-22-47 35-77-20-30-63 22-58ZM42 273l99-30 47 20 24 93H22v-54l20-29Zm518-30 78-18 101 33v98H544l-24-54 40-59Z"/>
+                  <path class="water-shape" d="M0 198c120-34 160 38 274 3s167-34 265 2 142 47 221 15v41c-95 34-151 14-240-15s-148-44-240-6S102 273 0 240v-42Z"/>
+                  <g class="roads"><path d="M-20 177 780 115M-20 320 790 240M100-20l176 430M370-30 440 420M610-20 512 410M-20 80 788 328M-10 370 760 45"/></g>
+                  <g class="minor-roads"><path d="M39 52 699 352M45 350 721 60M170-20 355 410M710-20 220 408M20 120 750 280M70 18 685 390M320-10 300 390M-10 260 780 190"/></g>
+                  <g class="blocks"><rect x="282" y="52" width="46" height="26" rx="4"/><rect x="347" y="68" width="37" height="30" rx="4"/><rect x="463" y="58" width="53" height="29" rx="4"/><rect x="279" y="114" width="33" height="29" rx="4"/><rect x="337" y="123" width="54" height="24" rx="4"/><rect x="428" y="112" width="42" height="33" rx="4"/><rect x="267" y="278" width="53" height="29" rx="4"/><rect x="334" y="292" width="39" height="25" rx="4"/><rect x="420" y="273" width="57" height="29" rx="4"/></g>
+                  <text x="310" y="35" class="map-label">NORTH DISTRICT</text><text x="305" y="232" class="map-label">CENTRAL</text><text x="520" y="360" class="map-label">RIVERSIDE</text>
+                  <path class="route-line" d="M176 266c42-26 64-35 91-50 47-27 53-77 108-89 66-15 93 9 124-13"/>
+                  <g class="map-pin pin-ambulance" transform="translate(375 127)"><circle r="18"/><text y="6">✚</text></g>
+                  <g class="map-pin pin-ambulance muted-pin" transform="translate(176 266)"><circle r="14"/><text y="5">✚</text></g>
+                  <g class="map-pin pin-charge" transform="translate(530 246)"><circle r="15"/><text y="5">ϟ</text></g>
+                  <g class="map-pin pin-charge" transform="translate(238 79)"><circle r="15"/><text y="5">ϟ</text></g>
+                  <g class="map-pin pin-charge" transform="translate(612 104)"><circle r="15"/><text y="5">ϟ</text></g>
+                </svg>
+                <div class="map-controls"><button aria-label="Zoom in">＋</button><button aria-label="Zoom out">−</button></div>
+                <div class="map-attribution">Illustrative map · Demo locations</div>
+              </div>
+              <div class="map-legend"><span><i class="legend-dot ambulance-legend">✚</i> Ambulances</span><span><i class="legend-dot charge-legend">ϟ</i> EV stations</span><span><i class="legend-route"></i> Active route</span></div>
+            </section>
+
+            <section class="panel activity-panel">
+              <div class="panel-heading"><div><h2>Recent activity</h2><p>Updates from across the city</p></div><button class="dots-button" aria-label="Activity options">···</button></div>
+              <div class="activity-list">
+                <article class="activity-item"><div class="activity-icon icon-red">✚</div><div class="activity-copy"><strong>Ambulance dispatched</strong><span>Unit AMB-04 · Central District</span><small>2 min ago</small></div><span class="activity-status status-enroute">En route</span></article>
+                <article class="activity-item"><div class="activity-icon icon-yellow">ϟ</div><div class="activity-copy"><strong>New reservation</strong><span>Station 08 · Riverside</span><small>14 min ago</small></div><span class="activity-status status-booked">Booked</span></article>
+                <article class="activity-item"><div class="activity-icon icon-blue">▤</div><div class="activity-copy"><strong>Streetlight reported</strong><span>#CMP-2481 · North District</span><small>36 min ago</small></div><span class="activity-status status-review">In review</span></article>
+                <article class="activity-item"><div class="activity-icon icon-green">✓</div><div class="activity-copy"><strong>Road hazard cleared</strong><span>#CMP-2476 · Market Street</span><small>1 hr ago</small></div><span class="activity-status status-done">Resolved</span></article>
+              </div>
+              <button class="text-link" data-go="complaints">View all activity <span>→</span></button>
+            </section>
+          </div>
+
+          <div class="lower-grid">
+            <section class="panel fleet-panel"><div class="panel-heading"><div><h2>Ambulance fleet</h2><p>Dispatch overview <span class="fleet-live">SAMPLE</span></p></div><button class="subtle-button" data-go="ambulances">All units <span>→</span></button></div>
+              <div class="fleet-table-wrap"><table class="fleet-table"><thead><tr><th>UNIT</th><th>LOCATION</th><th>STATUS</th><th>ETA</th></tr></thead><tbody id="overview-fleet"></tbody></table></div>
+            </section>
+            <section class="panel station-panel"><div class="panel-heading"><div><h2>Charging stations</h2><p>Availability right now</p></div><button class="subtle-button" data-go="charging">View stations <span>→</span></button></div>
+              <div class="station-summary"><div class="station-ring"><div><strong id="summary-free">13</strong><span>available</span></div></div><div class="station-details"><div><span><i class="station-key key-free"></i> Available</span><strong id="summary-free-detail">13</strong></div><div><span><i class="station-key key-busy"></i> In use</span><strong id="summary-busy">13</strong></div><div><span><i class="station-key key-booked"></i> Reserved</span><strong id="summary-reserved">0</strong></div><small>Across 6 demo stations</small></div></div>
+            </section>
+          </div>
+          <footer class="footer-note"><span>CityPulse service dashboard</span><span>Concept demo · Data shown is illustrative</span></footer>
+        </section>
+
+        <section class="page-section secondary-page" id="ambulances">
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> EMERGENCY RESPONSE</div><h1>Ambulance fleet</h1><p>Monitor sample unit status and estimated response times.</p></div><button class="button button-dark" id="dispatch-button"><span>＋</span> Simulate dispatch</button></div>
+          <div class="section-banner ambulance-banner"><div class="banner-symbol">✚</div><div><strong>Emergency operations demo</strong><p>Sample unit status only. No real ambulance or dispatch system is connected.</p></div><span class="banner-chip"><i></i> Sample data</span></div>
+          <div class="stats-grid compact-stats"><article class="stat-card"><div class="stat-top"><span class="stat-label">Total fleet</span><span class="stat-icon ambulance-icon">✚</span></div><div class="stat-value" id="fleet-total">08 <span class="stat-unit">units</span></div><div class="stat-foot">Across demo city zones</div></article><article class="stat-card"><div class="stat-top"><span class="stat-label">Available</span><span class="stat-icon response-icon">✓</span></div><div class="stat-value" id="fleet-available">05 <span class="stat-unit">units</span></div><div class="stat-foot"><span class="status-dot green"></span> Ready for dispatch</div></article><article class="stat-card"><div class="stat-top"><span class="stat-label">Responding</span><span class="stat-icon charge-icon">↗</span></div><div class="stat-value" id="fleet-responding">03 <span class="stat-unit">units</span></div><div class="stat-foot">Active demo calls</div></article><article class="stat-card"><div class="stat-top"><span class="stat-label">Avg. arrival</span><span class="stat-icon complaint-icon">◷</span></div><div class="stat-value">08 <span class="stat-unit">min</span></div><div class="stat-foot"><span class="trend-up">Demo estimate</span></div></article></div>
+          <div class="panel fleet-page-panel"><div class="panel-heading"><div><h2>Unit status</h2><p>Fleet location and dispatch status</p></div><select class="filter-select" id="ambulance-zone-filter" aria-label="Filter ambulances by zone"><option value="all">All zones</option><option>Central District</option><option>North District</option><option>South District</option><option>East District</option><option>West District</option><option>Riverside</option></select></div><div class="fleet-table-wrap"><table class="fleet-table full-table"><thead><tr><th>UNIT</th><th>ZONE</th><th>LAST LOCATION</th><th>STATUS</th><th>ETA</th><th></th></tr></thead><tbody id="ambulance-table"></tbody></table></div></div>
+        </section>
+
+        <section class="page-section secondary-page" id="charging">
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot charge-eyebrow"></span> ELECTRIC MOBILITY</div><h1>EV charging</h1><p>Find an open charger and reserve a time that works for you.</p></div><button class="button button-dark" id="open-booking"><span>＋</span> Reserve a spot</button></div>
+          <div class="section-banner charging-banner"><div class="banner-symbol">ϟ</div><div><strong>Skip the queue. Charge on your schedule.</strong><p>Browse demo station availability and reserve a charging slot in advance.</p></div><span class="banner-chip"><span id="charging-banner-free">13</span> spots available</span></div>
+          <div class="charging-toolbar"><div class="station-tabs"><button class="station-tab active" data-filter="all">All stations <span id="station-count-all">6</span></button><button class="station-tab" data-filter="available">Available <span id="station-count-available">5</span></button><button class="station-tab" data-filter="busy">Busy <span id="station-count-busy">1</span></button></div><select class="filter-select" id="station-district-filter" aria-label="Filter charging stations by district"><option value="all">All districts</option><option>Central</option><option>East</option><option>North</option><option>Riverside</option><option>West</option></select></div>
+          <div class="station-grid" id="station-grid"></div>
+          <section class="panel reservations-panel"><div class="panel-heading"><div><h2>My reservations</h2><p>Demo bookings saved in this browser</p></div><span class="reservation-count" id="reservation-count">0 bookings</span></div><div class="fleet-table-wrap"><table class="fleet-table"><thead><tr><th>REFERENCE</th><th>STATION</th><th>DATE & TIME</th><th>STATUS</th><th></th></tr></thead><tbody id="reservations-table"></tbody></table></div><div class="empty-state" id="empty-reservations">No bookings yet. Reserve an open charging spot to see it here.</div></section>
+        </section>
+
+        <section class="page-section secondary-page" id="complaints">
+          <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot complaint-eyebrow"></span> RESIDENT SERVICES</div><h1>Complaints & requests</h1><p>Report an issue and follow it through to resolution.</p></div><button class="button button-dark" id="open-complaint"><span>＋</span> Submit a complaint</button></div>
+          <div class="complaint-promise"><div class="promise-icon">✓</div><div><strong>Every report gets a response.</strong><span>Our service goal is to resolve complaints within 10 days. You can track progress here.</span></div><div class="promise-days"><strong>10</strong><span>day target</span></div></div>
+          <div class="complaints-toolbar"><div class="station-tabs"><button class="complaint-tab active" data-complaint-filter="all">All complaints <span id="all-count">3</span></button><button class="complaint-tab" data-complaint-filter="open">Open</button><button class="complaint-tab" data-complaint-filter="Resolved">Resolved</button></div><label class="search-box"><span>⌕</span><input id="complaint-search" type="search" placeholder="Search reports..." /></label></div>
+          <div class="panel complaints-panel"><div class="fleet-table-wrap"><table class="fleet-table complaints-table"><thead><tr><th>REPORT</th><th>CATEGORY</th><th>LOCATION</th><th>DETAILS</th><th>SUBMITTED</th><th>STATUS</th><th>DEADLINE</th><th></th></tr></thead><tbody id="complaints-table"></tbody></table></div><div class="empty-state hidden" id="empty-complaints">No complaints match your search.</div></div>
+          <footer class="footer-note"><span>Need urgent help? Contact your local emergency services.</span><span>Complaint resolution target: within 10 days</span></footer>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Close dialog">×</button>
+        <div class="modal-kicker"><span class="eyebrow-dot" id="modal-dot"></span> CITY SERVICES</div>
+        <h2 id="modal-title">Submit a complaint</h2>
+        <p class="modal-description" id="modal-description">Tell us what needs attention. We’ll provide a reference number so you can follow up.</p>
+        <form id="modal-form">
+          <div class="form-field" id="complaint-category-field"><label for="complaint-category">Issue category</label><select id="complaint-category"><option>Road & traffic</option><option>Street lighting</option><option>Waste & sanitation</option><option>Water supply</option><option>Public safety</option><option>Other</option></select></div>
+          <div class="form-field" id="station-field"><label for="station-select">Charging station</label><select id="station-select"></select></div>
+          <div class="form-row" id="booking-fields"><div class="form-field"><label for="booking-date">Date</label><input id="booking-date" type="date" required /></div><div class="form-field"><label for="booking-time">Arrival time</label><select id="booking-time"><option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>01:00 PM</option><option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option></select></div></div>
+          <div class="form-field" id="location-field"><label for="complaint-location">Location</label><input id="complaint-location" type="text" placeholder="Street, neighborhood, or landmark" maxlength="100" required /></div>
+          <div class="form-field" id="description-field"><label for="complaint-description">Description</label><textarea id="complaint-description" rows="3" maxlength="500" placeholder="Add a few details to help us understand the issue..." required></textarea></div>
+          <button class="button button-dark modal-submit" id="modal-submit" type="submit">Submit complaint <span>→</span></button>
+          <p class="form-note" id="form-note">Your report will be added to this demo dashboard.</p>
+        </form>
+        <div class="success-message hidden" id="success-message"><div class="success-check">✓</div><h3 id="success-title">Report submitted</h3><p id="success-copy"></p><button class="button button-dark" id="success-done">Done</button></div>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
